@@ -33,9 +33,20 @@ public class ProjectTaskController {
             return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
         } else {
             ProjectTask newProjectTask = projectTaskService.saveOrUpdateProjectTask(projectTask);
-            return new ResponseEntity<ProjectTask>(newProjectTask, HttpStatus.CREATED); 
+            return new ResponseEntity<ProjectTask>(newProjectTask, HttpStatus.CREATED);
         }
 
+    }
+
+    @GetMapping("/all")
+    public Iterable<ProjectTask> getAllPTs() {
+        return projectTaskService.findAll();
+    }
+
+    @GetMapping("/{pt_id}")
+    public ResponseEntity<?> getPTById(@PathVariable Long pt_id) {
+        ProjectTask projectTask = projectTaskService.findById(pt_id);
+        return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK);
     }
 
 }

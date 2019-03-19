@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectTaskRepo extends CrudRepository<ProjectTask, Long> {
+    ProjectTask getById(Long id);
 }
